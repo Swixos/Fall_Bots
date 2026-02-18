@@ -33,8 +33,8 @@ namespace FallBots.Player
         [SerializeField] private float gravityMultiplier = 2.5f;
         [SerializeField] private float fallMultiplier = 3f;
         [SerializeField] private float maxFallSpeed = 30f;
-        [SerializeField] private PhysicMaterial slipperyMaterial;
-        [SerializeField] private PhysicMaterial normalMaterial;
+        [SerializeField] private PhysicsMaterial slipperyMaterial;
+        [SerializeField] private PhysicsMaterial normalMaterial;
 
         private Rigidbody rb;
         private CapsuleCollider capsule;

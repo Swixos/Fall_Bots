@@ -1,7 +1,7 @@
 {
     "name": "FallBots",
     "rootNamespace": "FallBots",
-    "references": [],
+    "references": ["Unity.InputSystem"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
