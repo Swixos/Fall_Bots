@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using FallBots.Player;
 using FallBots.CourseGeneration;
@@ -156,13 +157,15 @@ namespace FallBots.Managers
 
         private void UpdateFinished()
         {
-            // Wait for restart input
-            if (Input.GetKeyDown(KeyCode.R))
+            var kb = Keyboard.current;
+            if (kb == null) return;
+
+            if (kb.rKey.wasPressedThisFrame)
             {
                 StartNewRace();
             }
 
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (kb.escapeKey.wasPressedThisFrame)
             {
                 Application.Quit();
             }
