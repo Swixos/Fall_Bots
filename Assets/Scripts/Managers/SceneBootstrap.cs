@@ -182,7 +182,7 @@ namespace FallBots.Managers
         {
             // Bean-shaped character (capsule body + sphere head)
             GameObject player = new GameObject("Player");
-            player.layer = LayerMask.NameToLayer("Player");
+            player.layer = 0; // Default layer
 
             // Physics
             var rb = player.AddComponent<Rigidbody>();

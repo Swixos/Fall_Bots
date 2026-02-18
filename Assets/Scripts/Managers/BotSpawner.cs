@@ -27,7 +27,7 @@ namespace FallBots.Managers
                 );
 
                 GameObject bot = new GameObject($"Bot_{i}");
-                bot.layer = LayerMask.NameToLayer("Player");
+                bot.layer = 0; // Default layer
                 bot.transform.position = startPosition + offset + Vector3.up * 2f;
 
                 var capsule = bot.AddComponent<CapsuleCollider>();
