@@ -34,7 +34,7 @@ PlayerSettings:
   m_SplashScreenLogoVAlign: 0
   m_SplashScreenLogoHAlign: 0
   m_SplashScreenBackgroundPortraitAspect: 1
-  m_ActiveInputHandler: 0
-  enableNativePlatformBackendsForNewInputSystem: 0
+  m_ActiveInputHandler: 1
+  enableNativePlatformBackendsForNewInputSystem: 1
   disableOldInputManagerSupport: 0
   legacyClampBlendShapeWeights: 0

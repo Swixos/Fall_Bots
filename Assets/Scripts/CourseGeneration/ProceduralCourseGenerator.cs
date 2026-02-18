@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FallBots.Obstacles;
+using FallBots.Managers;
 
 namespace FallBots.CourseGeneration
 {
@@ -721,7 +722,7 @@ namespace FallBots.CourseGeneration
             var renderer = obj.GetComponent<Renderer>();
             if (renderer != null)
             {
-                renderer.material = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                renderer.material = new Material(Managers.SceneBootstrap.GetDefaultShader());
                 renderer.material.color = color;
             }
         }

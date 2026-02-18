@@ -17,6 +17,23 @@ namespace FallBots.Managers
         [SerializeField] private bool useRandomSeed = true;
         [SerializeField] private int fixedSeed = 42;
 
+        private static Shader _cachedShader;
+
+        /// <summary>
+        /// Returns the correct shader for the active render pipeline by extracting it
+        /// from a primitive's default material. Avoids Shader.Find() which fails at runtime.
+        /// </summary>
+        public static Shader GetDefaultShader()
+        {
+            if (_cachedShader != null) return _cachedShader;
+
+            GameObject temp = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            _cachedShader = temp.GetComponent<Renderer>().sharedMaterial.shader;
+            Destroy(temp);
+
+            return _cachedShader;
+        }
+
         private void Awake()
         {
             SetupLighting();
@@ -110,11 +127,7 @@ namespace FallBots.Managers
 
         private Material CreateMaterial(string name, Color color)
         {
-            Shader shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (shader == null)
-                shader = Shader.Find("Standard");
-
-            Material mat = new Material(shader);
+            Material mat = new Material(GetDefaultShader());
             mat.name = name;
             mat.color = color;
             mat.SetFloat("_Smoothness", 0.4f);

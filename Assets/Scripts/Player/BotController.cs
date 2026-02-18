@@ -1,4 +1,5 @@
 using UnityEngine;
+using FallBots.Managers;
 
 namespace FallBots.Player
 {
@@ -70,9 +71,7 @@ namespace FallBots.Player
             body.transform.localScale = new Vector3(0.7f, 0.9f, 0.7f);
             Destroy(body.GetComponent<Collider>());
 
-            Shader shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (shader == null) shader = Shader.Find("Standard");
-            Material mat = new Material(shader);
+            Material mat = new Material(Managers.SceneBootstrap.GetDefaultShader());
             mat.color = botColor;
             mat.SetFloat("_Smoothness", 0.7f);
             body.GetComponent<Renderer>().material = mat;
@@ -90,9 +89,7 @@ namespace FallBots.Player
             eye.transform.localScale = new Vector3(0.15f, 0.2f, 0.1f);
             Destroy(eye.GetComponent<Collider>());
 
-            Shader shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (shader == null) shader = Shader.Find("Standard");
-            eye.GetComponent<Renderer>().material = new Material(shader) { color = Color.white };
+            eye.GetComponent<Renderer>().material = new Material(Managers.SceneBootstrap.GetDefaultShader()) { color = Color.white };
         }
 
         private void Update()
