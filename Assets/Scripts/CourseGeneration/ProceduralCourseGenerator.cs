@@ -276,7 +276,7 @@ namespace FallBots.CourseGeneration
                     slimeMaterial);
                 slime.name = "SlimeZone";
                 slime.tag = "SlimeZone";
-                slime.layer = LayerMask.NameToLayer("Trigger");
+                slime.layer = 0; // Default layer, trigger handled via collider.isTrigger
 
                 var collider = slime.GetComponent<BoxCollider>();
                 if (collider != null) collider.isTrigger = true;
@@ -603,7 +603,8 @@ namespace FallBots.CourseGeneration
             platform.transform.localPosition = localPos;
             platform.transform.localScale = scale;
             platform.name = "Platform";
-            platform.layer = LayerMask.NameToLayer("Ground");
+            // Use Default layer (0) - custom layers require manual Unity Editor setup
+            platform.layer = 0;
 
             if (mat != null)
             {
