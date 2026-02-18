@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace FallBots.Player
 {
@@ -99,8 +100,16 @@ namespace FallBots.Player
 
         private void GatherInput()
         {
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
+            var kb = Keyboard.current;
+            if (kb == null) return;
+
+            float h = 0f;
+            float v = 0f;
+
+            if (kb.dKey.isPressed || kb.rightArrowKey.isPressed) h += 1f;
+            if (kb.aKey.isPressed || kb.leftArrowKey.isPressed) h -= 1f;
+            if (kb.wKey.isPressed || kb.upArrowKey.isPressed) v += 1f;
+            if (kb.sKey.isPressed || kb.downArrowKey.isPressed) v -= 1f;
 
             // Camera-relative movement
             if (mainCamera == null) mainCamera = Camera.main;
@@ -120,15 +129,15 @@ namespace FallBots.Player
                 moveInput = new Vector3(h, 0f, v).normalized;
             }
 
-            isSprinting = Input.GetKey(KeyCode.LeftShift);
+            isSprinting = kb.leftShiftKey.isPressed;
 
-            if (Input.GetButtonDown("Jump"))
+            if (kb.spaceKey.wasPressedThisFrame)
             {
                 lastJumpPressTime = Time.time;
                 TryJump();
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftControl) && !isDiving && !isGrounded)
+            if (kb.leftCtrlKey.wasPressedThisFrame && !isDiving && !isGrounded)
             {
                 StartDive();
             }

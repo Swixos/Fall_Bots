@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace FallBots.Player
 {
@@ -63,8 +64,11 @@ namespace FallBots.Player
 
         private void HandleInput()
         {
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-            float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
+            var mouse = Mouse.current;
+            if (mouse == null) return;
+
+            float mouseX = mouse.delta.x.ReadValue() * mouseSensitivity * 0.1f;
+            float mouseY = mouse.delta.y.ReadValue() * mouseSensitivity * 0.1f;
 
             currentYaw += mouseX;
             currentPitch -= mouseY;
